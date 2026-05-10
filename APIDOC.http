@@ -1,0 +1,51 @@
+# API call for creating a user
+
+###
+POST http://127.0.0.1:8000/signup/
+Content-Type: application/json
+
+{
+    "username":"django",
+    "password":"django@123",
+    "email":"django@gmail.com",
+    "phone":"1234567890"
+}
+
+###
+POST http://127.0.0.1:8000/issues/
+Content-Type: application/json
+Authorization: Basic sona:sona@123
+
+{
+    "title":"pothole",
+    "description":"pothole in road",
+    "issue_type":"pothole",
+    "location":"m.o road"
+}
+
+###
+GET http://127.0.0.1:8000/issues/
+Accept: application/json
+Authorization: Basic sona:sona@123
+
+###
+GET http://127.0.0.1:8000/issues/1/
+Accept: application/json
+Authorization: Basic sona:sona@123
+
+###
+PUT http://127.0.0.1:8000/issues/1/
+Content-Type: application/json
+Authorization: Basic django:django@123
+
+{
+    "title": "water pipe breakage",
+    "description": "heavy water leakage",
+    "issue_type": "road_damage",
+    "location": "m.g road"
+}
+
+###
+DELETE http://127.0.0.1:8000/issues/1/
+Content-Type: application/json
+Authorization: Basic sona:sona@123

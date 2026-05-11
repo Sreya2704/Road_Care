@@ -16,11 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tickets.views import SignUpView,IssueCreateListView,IssueRetrieveUpdateDelete
+from tickets.views import SignUpView,IssueCreateListView,IssueRetrieveUpdateDelete,CommentCreateView,CommentRetrieveUpdateDeleteView
+from rest_framework.authtoken.views import ObtainAuthToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/',SignUpView.as_view()),
     path("issues/",IssueCreateListView.as_view()),
     path("issues/<int:pk>/",IssueRetrieveUpdateDelete.as_view()),
+    path("tokens/",ObtainAuthToken.as_view()),
+    path("issue/<int:pk>/comments/",CommentCreateView.as_view()),
+    path('comments/<int:pk>/',CommentRetrieveUpdateDeleteView.as_view()),
 ]

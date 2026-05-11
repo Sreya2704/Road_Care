@@ -14,38 +14,76 @@ Content-Type: application/json
 ###
 POST http://127.0.0.1:8000/issues/
 Content-Type: application/json
-Authorization: Basic sona:sona@123
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 
 {
-    "title":"pothole",
+    "title":"pipe break",
     "description":"pothole in road",
     "issue_type":"pothole",
-    "location":"m.o road"
+    "location":"m.g road"
 }
 
 ###
 GET http://127.0.0.1:8000/issues/
 Accept: application/json
-Authorization: Basic sona:sona@123
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 
 ###
-GET http://127.0.0.1:8000/issues/1/
+GET http://127.0.0.1:8000/issues/4/
 Accept: application/json
-Authorization: Basic sona:sona@123
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 
 ###
-PUT http://127.0.0.1:8000/issues/1/
+PUT http://127.0.0.1:8000/issues/3/
 Content-Type: application/json
-Authorization: Basic django:django@123
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 
 {
     "title": "water pipe breakage",
     "description": "heavy water leakage",
     "issue_type": "road_damage",
-    "location": "m.g road"
+    "location": "M.G road"
 }
 
 ###
 DELETE http://127.0.0.1:8000/issues/1/
 Content-Type: application/json
-Authorization: Basic sona:sona@123
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
+
+# token
+###
+POST http://127.0.0.1:8000/tokens/
+Content-Type: application/json
+
+{
+    "username":"django",
+    "password":"django@123"
+}
+
+###
+POST http://127.0.0.1:8000/issue/3/comments/
+Content-Type: application/json
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
+
+{
+    "message":"high flow of water..."
+}
+
+###
+GET http://127.0.0.1:8000/comments/1/
+Accept: application/json
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
+
+###
+PUT http://127.0.0.1:8000/comments/1/
+Content-Type: application/json
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
+
+{
+    "message": "no street light for last few months...."
+}
+
+###
+DELETE http://127.0.0.1:8000/comments/1/
+Accept: application/json
+Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64

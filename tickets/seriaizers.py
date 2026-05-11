@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tickets.models import User,RoadIssue
+from tickets.models import User,RoadIssue,Comment
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,11 @@ class IssueSerializer(serializers.ModelSerializer):
         model=RoadIssue
         fields="__all__"
         read_only_fields=["id","reported_by","created_at","updated_at"]
+
+class CommentSerializer(serializers.ModelSerializer):
+    issue=serializers.StringRelatedField(read_only=True)
+    user=serializers.StringRelatedField(read_only=True)
+    class Meta:
+        model=Comment
+        fields="__all__"
+        read_only_fields=["id","issue","user"]

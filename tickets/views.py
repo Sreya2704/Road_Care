@@ -4,10 +4,10 @@ from django.shortcuts import render
 
 from rest_framework.generics import CreateAPIView,ListAPIView,RetrieveAPIView,UpdateAPIView,DestroyAPIView
 from tickets.seriaizers import UserSerializer,IssueSerializer,CommentSerializer
-from tickets.models import RoadIssue,Comment
+from tickets.models import RoadIssue,Comment,Reaction
 from rest_framework import authentication,permissions
 from rest_framework.response import Response
-from tickets.permissions import IsOwner,IsCommentOwner
+from tickets.permissions import IsOwner
 
 class SignUpView(CreateAPIView):
 
@@ -53,5 +53,20 @@ class CommentRetrieveUpdateDeleteView(RetrieveAPIView,UpdateAPIView,DestroyAPIVi
     serializer_class=CommentSerializer
     queryset=Comment.objects.all()
     authentication_classes=[authentication.TokenAuthentication]
-    permission_classes=[IsCommentOwner]
+    permission_classes=[IsOwner]
     
+from rest_framework.views import APIView
+from rest_framework.response import Response
+class LikeView(APIView):
+    authentication_classes=[authentication.TokenAuthentication]
+    permission_classes=[permissions.IsAuthenticated]
+    def post(self,request,*args,**kwargs):
+
+        id=kwargs.get("pk")
+        issue_object=RoadIssue.objects.get(id=id)
+        user_object=request.user
+        if Reaction.objects.filter(user=user_object,issue=issue_object):
+            return Response(data={"message:You have already reacted..."})
+
+        Reaction.objects.create(user=user_object,issue=issue_object)
+        return Response(data={"message:u like this issue...."})

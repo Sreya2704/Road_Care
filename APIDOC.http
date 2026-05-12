@@ -5,10 +5,10 @@ POST http://127.0.0.1:8000/signup/
 Content-Type: application/json
 
 {
-    "username":"django",
-    "password":"django@123",
-    "email":"django@gmail.com",
-    "phone":"1234567890"
+    "username":"react",
+    "password":"react@123",
+    "email":"react@gmail.com",
+    "phone":"8534567890"
 }
 
 ###
@@ -29,7 +29,7 @@ Accept: application/json
 Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 
 ###
-GET http://127.0.0.1:8000/issues/4/
+GET http://127.0.0.1:8000/issues/2/
 Accept: application/json
 Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 
@@ -56,9 +56,12 @@ POST http://127.0.0.1:8000/tokens/
 Content-Type: application/json
 
 {
-    "username":"django",
-    "password":"django@123"
+    "username":"react",
+    "password":"react@123"
 }
+
+# django:940004414d4bc67f25273cb1f0f1332451c8cf64
+# react:9eb6a71e2aa6491d34ea1c503a1b02c11794fbef
 
 ###
 POST http://127.0.0.1:8000/issue/3/comments/
@@ -87,3 +90,8 @@ Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
 DELETE http://127.0.0.1:8000/comments/1/
 Accept: application/json
 Authorization: Token 940004414d4bc67f25273cb1f0f1332451c8cf64
+
+###
+POST http://127.0.0.1:8000/issues/2/like/
+Content-Type: application/json
+Authorization: Token 9eb6a71e2aa6491d34ea1c503a1b02c11794fbef

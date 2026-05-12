@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tickets.views import SignUpView,IssueCreateListView,IssueRetrieveUpdateDelete,CommentCreateView,CommentRetrieveUpdateDeleteView
+from tickets.views import SignUpView,IssueCreateListView,IssueRetrieveUpdateDelete,CommentCreateView,CommentRetrieveUpdateDeleteView,LikeView
 from rest_framework.authtoken.views import ObtainAuthToken
 
 urlpatterns = [
@@ -27,4 +27,5 @@ urlpatterns = [
     path("tokens/",ObtainAuthToken.as_view()),
     path("issue/<int:pk>/comments/",CommentCreateView.as_view()),
     path('comments/<int:pk>/',CommentRetrieveUpdateDeleteView.as_view()),
+    path('issues/<int:pk>/like/',LikeView.as_view()),
 ]

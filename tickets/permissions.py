@@ -1,11 +1,22 @@
 from rest_framework.permissions import BasePermission
+from tickets.models import Comment,RoadIssue
 
 class IsOwner(BasePermission):
     def has_object_permission(self, request, view, obj):
-        #obj of expense takes the id
-        return request.user==obj.reported_by
+        if isinstance(obj,Comment):
+            return request.user == obj.user
+        
+        if isinstance(obj,RoadIssue):
+            return request.user == obj.reported_by
     
-class IsCommentOwner(BasePermission):
 
-    def has_object_permission(self, request, view, obj):
-        return request.user == obj.user
+
+
+
+
+
+    
+# class IsCommentOwner(BasePermission):
+
+#     def has_object_permission(self, request, view, obj):
+#         return request.user == obj.user
